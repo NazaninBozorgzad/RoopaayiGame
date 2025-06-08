@@ -12,19 +12,23 @@ public class BallController : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("🟡 روی توپ کلیک شد");
-
         rb.velocity = Vector2.zero;
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
 
         if (GameManager.instance != null)
         {
-            Debug.Log("✅ GameManager پیدا شد");
             GameManager.instance.AddScore(1);
         }
-        else
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground")
         {
-            Debug.Log("❌ GameManager هنوز null هست");
+            if (GameManager.instance != null)
+            {
+                GameManager.instance.GameOver();
+            }
         }
     }
 }
