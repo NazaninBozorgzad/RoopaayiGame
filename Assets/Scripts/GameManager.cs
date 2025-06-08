@@ -7,12 +7,16 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject gameOverPanel;
     public TextMeshProUGUI scoreText;
+    public AudioClip fallSound;
+    private AudioSource audioSource;
     int score = 0;
 
     void Awake()
     {
         instance = this;
         Debug.Log("✅ GameManager فعال شد");
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     public void AddScore(int value)
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
+        audioSource.PlayOneShot(fallSound);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0; // توقف بازی
     }
