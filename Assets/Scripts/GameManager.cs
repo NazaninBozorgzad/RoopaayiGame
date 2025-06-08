@@ -1,33 +1,23 @@
-// GameManager.cs
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public int score = 0;
-    public Text scoreText;
-    public GameObject gameOverPanel;
+
+    public TextMeshProUGUI scoreText;
+    int score = 0;
 
     void Awake()
     {
         instance = this;
+        Debug.Log("✅ GameManager فعال شد");
     }
 
     public void AddScore(int value)
     {
         score += value;
         scoreText.text = "Score: " + score;
-    }
-
-    public void GameOver()
-    {
-        gameOverPanel.SetActive(true);
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(0);
+        Debug.Log("✅ امتیاز اضافه شد: " + score);
     }
 }
