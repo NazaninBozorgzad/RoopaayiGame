@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    // ⬆️ افزایش امتیاز
     public void AddScore(int value)
     {
         score += value;
@@ -39,9 +40,10 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: " + score;
     }
 
+    // ⬇️ از دست دادن جان
     public void LoseLife()
     {
-        if (lives <= 0) return; // اگر جان تموم شده دیگه کاری نکن
+        if (lives <= 0) return;
 
         lives--;
         UpdateLivesUI();
@@ -52,12 +54,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // ➕ افزودن جان (مثلاً از خرید درون‌برنامه‌ای)
+    public void AddLife()
+    {
+        lives++;
+        UpdateLivesUI();
+    }
+
     void UpdateLivesUI()
     {
         if (livesText != null)
             livesText.text = "Lives: " + lives;
     }
 
+    // ☠️ پایان بازی
     public void GameOver()
     {
         if (musicSource != null && musicSource.isPlaying)
@@ -69,9 +79,16 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
     }
 
+    // 🔄 ریست بازی
     public void ReloadScene()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    // 🛒 فراخوانی خرید جان (از دکمه)
+    public void BuyLifeButton()
+    {
+        IAPManager.instance?.BuyExtraLife();
     }
 }
