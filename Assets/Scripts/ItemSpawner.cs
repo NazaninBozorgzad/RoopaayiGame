@@ -2,22 +2,42 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject goodItemPrefab;
-    public GameObject badItemPrefab;
+    public GameObject[] itemPrefabs; // آرایه آیتم‌ها برای اسپاون
 
-    public float spawnInterval = 3f;
-    public Vector2 spawnRangeX = new Vector2(-3f, 3f);
-    public float spawnY = 4f;
+    public float spawnInterval = 3f; // فاصله زمانی بین اسپاون‌ها
+
+    private Vector2 spawnAreaMin;
+    private Vector2 spawnAreaMax;
 
     void Start()
     {
-        InvokeRepeating("SpawnItem", 2f, spawnInterval);
+        // گرفتن ابعاد دوربین اصلی (Orthographic)
+        Camera cam = Camera.main;
+        float height = cam.orthographicSize * 2f;
+        float width = height * cam.aspect;
+
+        // تنظیم محدوده اسپاون در نصف بالایی صفحه
+        spawnAreaMin = new Vector2(-width / 2f, 0f);
+        spawnAreaMax = new Vector2(width / 2f, height / 2f);
+
+        // شروع اسپاون دوره‌ای آیتم‌ها
+        InvokeRepeating(nameof(SpawnRandomItem), 2f, spawnInterval);
     }
 
-    void SpawnItem()
+    void SpawnRandomItem()
     {
-        Vector3 spawnPos = new Vector3(Random.Range(spawnRangeX.x, spawnRangeX.y), spawnY, 0);
-        GameObject prefab = (Random.value < 0.7f) ? goodItemPrefab : badItemPrefab;
-        Instantiate(prefab, spawnPos, Quaternion.identity);
+        if (itemPrefabs.Length == 0)
+            return;
+
+        // انتخاب تصادفی آیتم
+        int randomIndex = Random.Range(0, itemPrefabs.Length);
+
+        // موقعیت تصادفی داخل محدوده نصف بالا
+        float randomX = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+        float randomY = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+
+        Vector2 spawnPos = new Vector2(randomX, randomY);
+
+        Instantiate(itemPrefabs[randomIndex], spawnPos, Quaternion.identity);
     }
 }

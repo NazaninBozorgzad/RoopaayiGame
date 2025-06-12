@@ -157,6 +157,7 @@ MonoBehaviour:
   livesText: {fileID: 721794375}
   fallSound: {fileID: 8300000, guid: d44a9824d5d614546befb3e0cc125b36, type: 3}
   musicSource: {fileID: 2049897147}
+  ball: {fileID: 587008690}
 --- !u!4 &69410603
 Transform:
   m_ObjectHideFlags: 0
@@ -802,6 +803,7 @@ RectTransform:
   m_Children:
   - {fileID: 728951435}
   - {fileID: 721794374}
+  - {fileID: 565729669}
   - {fileID: 2117385861}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -973,11 +975,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 140880284}
-  m_Father: {fileID: 2117385861}
+  m_Father: {fileID: 557132590}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -61}
+  m_AnchoredPosition: {x: -484, y: -112}
   m_SizeDelta: {x: 197.81, y: 49.0111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &565729670
@@ -1024,9 +1026,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 603be4310724cec46bc77371227921a0, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 69410602}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BuyLifeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1252,7 +1254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forceMultiplier: 5
   maxForce: 7
-  minDragDistance: 0.01
+  minDragDistance: 0.05
   trajectory: {fileID: 2078597319}
 --- !u!82 &587008691
 AudioSource:
@@ -1923,11 +1925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9907a439cb78e7b4b94bacd802855eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodItemPrefab: {fileID: 8462816388029400537, guid: 889f05ecc92876c4b9e8655746db0ac3, type: 3}
-  badItemPrefab: {fileID: 6953697542442167160, guid: d35fa226d28d3284fb2c89449b6eae52, type: 3}
-  spawnInterval: 3
-  spawnRangeX: {x: -3, y: 3}
-  spawnY: 4
+  itemPrefabs:
+  - {fileID: 6953697542442167160, guid: d35fa226d28d3284fb2c89449b6eae52, type: 3}
+  - {fileID: 8462816388029400537, guid: 889f05ecc92876c4b9e8655746db0ac3, type: 3}
+  - {fileID: 8572788035287424891, guid: 5f4d99f7c91d2824bb0467291bf12ec6, type: 3}
+  - {fileID: 7795973452680048683, guid: 6278a36b7c01ce8499d42bb1ac161515, type: 3}
+  spawnInterval: 2.5
 --- !u!4 &1671834923
 Transform:
   m_ObjectHideFlags: 0
@@ -2253,7 +2256,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 565729669}
   - {fileID: 480825838}
   - {fileID: 468118624}
   m_Father: {fileID: 557132590}

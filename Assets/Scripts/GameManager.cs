@@ -6,16 +6,27 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("UI")]
     public GameObject gameOverPanel;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
 
+    [Header("Audio")]
     public AudioClip fallSound;
     public AudioSource musicSource;
     private AudioSource audioSource;
 
-    int score = 0;
-    int lives = 3;  // تعداد جان اولیه
+    [Header("Ball Reference")]
+    public BallController ball;
+
+    private int score = 0;
+    private int lives = 3;
+
+    private bool isDoubleScoreActive = false;
+    private float doubleScoreEndTime;
+
+    private bool isSlowBallActive = false;
+    private float slowBallEndTime;
 
     void Awake()
     {
@@ -27,10 +38,27 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    // ⬆️ افزایش امتیاز
+    void Update()
+    {
+        if (isDoubleScoreActive && Time.time >= doubleScoreEndTime)
+        {
+            isDoubleScoreActive = false;
+            Debug.Log("🎯 Double Score ended.");
+        }
+
+        if (isSlowBallActive && Time.time >= slowBallEndTime)
+        {
+            isSlowBallActive = false;
+            if (ball != null)
+                ball.ResetSpeed();
+            Debug.Log("🐢 Slow Ball ended.");
+        }
+    }
+
     public void AddScore(int value)
     {
-        score += value;
+        int finalScore = isDoubleScoreActive ? value * 2 : value;
+        score += finalScore;
         UpdateScoreUI();
     }
 
@@ -40,7 +68,6 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: " + score;
     }
 
-    // ⬇️ از دست دادن جان
     public void LoseLife()
     {
         if (lives <= 0) return;
@@ -54,7 +81,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // ➕ افزودن جان (مثلاً از خرید درون‌برنامه‌ای)
     public void AddLife()
     {
         lives++;
@@ -67,28 +93,48 @@ public class GameManager : MonoBehaviour
             livesText.text = "Lives: " + lives;
     }
 
-    // ☠️ پایان بازی
     public void GameOver()
     {
         if (musicSource != null && musicSource.isPlaying)
             musicSource.Stop();
 
-        audioSource?.PlayOneShot(fallSound);
+        if (audioSource != null && fallSound != null)
+            audioSource.PlayOneShot(fallSound);
 
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
     }
 
-    // 🔄 ریست بازی
     public void ReloadScene()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // 🛒 فراخوانی خرید جان (از دکمه)
     public void BuyLifeButton()
     {
         IAPManager.instance?.BuyExtraLife();
     }
+
+    // ✅ این متد حالا درست تعریف شده است
+    public void ActivateSpecialItem(string effectType, float duration)
+    {
+        if (effectType == "DoubleScore")
+        {
+            isDoubleScoreActive = true;
+            doubleScoreEndTime = Time.time + duration;
+            Debug.Log("✅ Double Score Activated");
+        }
+        else if (effectType == "SpeedUp")
+        {
+            ball.SetFastSpeed(); // در BallController اضافه کن
+            Invoke(nameof(ResetBallSpeed), duration);
+            Debug.Log("⚡ Speed Up Activated");
+        }
+    }
+    void ResetBallSpeed()
+{
+    ball.ResetSpeed();
+    Debug.Log("⚡ Speed Reset to Normal");
+}
 }
