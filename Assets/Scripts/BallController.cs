@@ -5,8 +5,9 @@ public class BallController : MonoBehaviour
     private Rigidbody2D rb;
     private AudioSource audioSource;
 
-    public float clickForce = 6f;
-    public float dragForceMultiplier = 4f;
+    public float forceMultiplier = 10f;
+    public float maxForce = 12f;
+    public float minDragDistance = 0.05f;
 
     private Vector2 startDragPos;
     private bool isDragging = false;
@@ -25,44 +26,29 @@ public class BallController : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (isDragging)
+        if (!isDragging) return;
+
+        Vector2 endDragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dragVector = endDragPos - startDragPos;
+
+        if (dragVector.magnitude >= minDragDistance)
         {
-            Vector2 endDragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 dragVector = startDragPos - endDragPos;
+            Vector2 force = dragVector.normalized * Mathf.Clamp(dragVector.magnitude * forceMultiplier, 0f, maxForce);
+            rb.velocity = Vector2.zero;
+            rb.AddForce(force, ForceMode2D.Impulse);
 
-            if (dragVector.magnitude < 0.2f)
-            {
-                // کلیک ساده → ضربه معمولی به بالا
-                KickBall(Vector2.up * clickForce);
-            }
-            else if (dragVector.y > 0f)
-            {
-                // درگ رو به بالا → پرتاب با شدت متناسب
-                KickBall(dragVector * dragForceMultiplier);
-            }
-
-            isDragging = false;
+            audioSource?.Play();
+            GameManager.instance?.AddScore(1);
         }
-    }
 
-    void KickBall(Vector2 force)
-    {
-        rb.velocity = Vector2.zero;
-        rb.AddForce(force, ForceMode2D.Impulse);
-
-        if (audioSource != null)
-            audioSource.Play();
-
-        if (GameManager.instance != null)
-            GameManager.instance.AddScore(1);
+        isDragging = false;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Ground")
         {
-            if (GameManager.instance != null)
-                GameManager.instance.GameOver();
+            GameManager.instance?.GameOver();
         }
     }
 }

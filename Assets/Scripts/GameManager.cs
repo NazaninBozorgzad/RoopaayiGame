@@ -5,10 +5,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
     public GameObject gameOverPanel;
     public TextMeshProUGUI scoreText;
     public AudioClip fallSound;
+
+    public AudioSource musicSource; // ← اضافه شد: صدای موزیک جدا
     private AudioSource audioSource;
+
     int score = 0;
 
     void Awake()
@@ -16,7 +20,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         Debug.Log("✅ GameManager فعال شد");
         audioSource = GetComponent<AudioSource>();
-
     }
 
     public void AddScore(int value)
@@ -25,11 +28,20 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + score;
         Debug.Log("✅ امتیاز اضافه شد: " + score);
     }
+
     public void GameOver()
     {
-        audioSource.PlayOneShot(fallSound);
+        // قطع موزیک پس‌زمینه اگر فعال باشه
+        if (musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
+
+        // پخش صدای افتادن یا باخت
+        audioSource?.PlayOneShot(fallSound);
+
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0; // توقف بازی
+        Time.timeScale = 0;
     }
 
     public void ReloadScene()
