@@ -11,7 +11,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     public string extraLifeProductId = "extra_life";
 
-    void Awake()
+    void Start()
     {
         if (instance == null)
         {
