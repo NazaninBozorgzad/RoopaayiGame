@@ -10,19 +10,13 @@ public class IAPManager : MonoBehaviour, IStoreListener
     private static IExtensionProvider storeExtensionProvider;
 
     public string extraLifeProductId = "extra_life";
+    private int purchasedLives;
 
     void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializePurchasing();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
+        InitializePurchasing();
+        purchasedLives = PlayerPrefs.GetInt("Purchased Lives");
     }
 
     public void InitializePurchasing()
@@ -67,7 +61,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
         if (args.purchasedProduct.definition.id == extraLifeProductId)
         {
             Debug.Log("✅ Extra Life Purchased!");
-            GameManager.instance?.AddLife(); // جان اضافه کن
+            purchasedLives += 1;
+            PlayerPrefs.SetInt("Purchased Lives", purchasedLives); // جان اضافه کن
         }
 
         return PurchaseProcessingResult.Complete;
