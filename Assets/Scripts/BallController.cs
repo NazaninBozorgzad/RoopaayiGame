@@ -4,7 +4,7 @@ public class BallController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private AudioSource audioSource;
-    private SpriteRenderer sr; // 🟡 گرفتن SpriteRenderer برای چشمک
+    private SpriteRenderer sr;
 
     public float forceMultiplier = 10f;
     public float maxForce = 12f;
@@ -17,11 +17,21 @@ public class BallController : MonoBehaviour
     private Vector3 initialPosition;
     private bool canDrag = true;
 
-    void Start()
+    private float originalForceMultiplier;
+    private float originalMaxForce;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>(); // 🟡 گرفتن SpriteRenderer
+        sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+
+        originalForceMultiplier = forceMultiplier;
+        originalMaxForce = maxForce;
+    }
+
+    void Start()
+    {
         initialPosition = transform.position;
     }
 
@@ -39,7 +49,6 @@ public class BallController : MonoBehaviour
         {
             Vector2 currentPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 dragVector = currentPos - startDragPos;
-
             trajectory.ShowTrajectory(transform.position, dragVector);
         }
     }
@@ -69,7 +78,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.name == "Ground")
         {
-            GameManager.instance?.LoseLife();
+            GameManager.instance?.LoseLife(GameManager.instance.hasInfiniteLives);
             StartCoroutine(ResetAfterDelay(0.5f));
         }
     }
@@ -80,14 +89,13 @@ public class BallController : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.simulated = false;
+
         yield return new WaitForSeconds(delay);
 
         transform.position = initialPosition;
         rb.simulated = true;
 
-        // 👇 چشمک زدن بعد از برگشت
-        StartCoroutine(BlinkEffect(1.5f)); // چشمک بزن به مدت 1.5 ثانیه
-
+        StartCoroutine(BlinkEffect(1.5f));
         canDrag = true;
     }
 
@@ -99,11 +107,41 @@ public class BallController : MonoBehaviour
         while (elapsed < duration)
         {
             visible = !visible;
-            sr.color = new Color(1f, 1f, 1f, visible ? 1f : 0.3f); // روشن و نیمه‌شفاف
+            sr.color = new Color(1f, 1f, 1f, visible ? 1f : 0.3f);
             yield return new WaitForSeconds(0.2f);
             elapsed += 0.2f;
         }
 
-        sr.color = new Color(1f, 1f, 1f, 1f); // پایان: کاملاً روشن
+        sr.color = new Color(1f, 1f, 1f, 1f);
     }
+
+    // 🐢 کاهش موقت سرعت پرتاب
+    public void SetSlowSpeed()
+    {
+        forceMultiplier = originalForceMultiplier * 0.5f;
+        maxForce = originalMaxForce * 0.5f;
+        Debug.Log("🐢 توپ کند شد");
+    }
+
+    // ⚡ بازگرداندن سرعت به حالت عادی
+    //public void ResetSpeed()
+    //{
+       // forceMultiplier = originalForceMultiplier;
+       // maxForce = originalMaxForce;
+       // Debug.Log("⚡ سرعت توپ به حالت عادی برگشت");
+    //}
+    public void SetFastSpeed()
+{
+    forceMultiplier = originalForceMultiplier * 1.5f;
+    maxForce = originalMaxForce * 1.5f;
+    Debug.Log("⚡ توپ سریع شد");
+}
+
+public void ResetSpeed()
+{
+    forceMultiplier = originalForceMultiplier;
+    maxForce = originalMaxForce;
+    Debug.Log("🔄 سرعت توپ به حالت عادی برگشت");
+}
+
 }

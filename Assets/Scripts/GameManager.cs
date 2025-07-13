@@ -7,19 +7,30 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("UI")]
     public GameObject gameOverPanel;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public GameObject beforeStartImage;
 
+    [Header("Audio")]
     public AudioClip fallSound;
     public AudioSource musicSource;
     private AudioSource audioSource;
 
     public bool lost;
+    public bool hasInfiniteLives;
 
     int score = 0;
     int lives = 3;  // تعداد جان اولیه
+    [Header("Ball Reference")]
+    public BallController ball;
+
+    private bool isDoubleScoreActive = false;
+    private float doubleScoreEndTime;
+
+    private bool isSlowBallActive = false;
+    private float slowBallEndTime;
 
     [Header("CountDownSheets")]
     public GameObject[] countDownSprites = new GameObject[3];
@@ -31,10 +42,27 @@ public class GameManager : MonoBehaviour
         BeginPlay();
     }
 
-    // ⬆️ افزایش امتیاز
+    void Update()
+    {
+        if (isDoubleScoreActive && Time.time >= doubleScoreEndTime)
+        {
+            isDoubleScoreActive = false;
+            Debug.Log("🎯 Double Score ended.");
+        }
+
+        if (isSlowBallActive && Time.time >= slowBallEndTime)
+        {
+            isSlowBallActive = false;
+            if (ball != null)
+                ball.ResetSpeed();
+            Debug.Log("🐢 Slow Ball ended.");
+        }
+    }
+
     public void AddScore(int value)
     {
-        score += value;
+        int finalScore = isDoubleScoreActive ? value * 2 : value;
+        score += finalScore;
         UpdateScoreUI();
     }
 
@@ -44,9 +72,9 @@ public class GameManager : MonoBehaviour
             scoreText.text = "Score: " + score;
     }
 
-    // ⬇️ از دست دادن جان
-    public void LoseLife()
+    public void LoseLife(bool isInfinite)
     {
+        if (isInfinite == true) return;
         if (lives <= 0) return;
 
         lives--;
@@ -58,13 +86,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddLife()
+    {
+        lives++;
+        UpdateLivesUI();
+    }
+
     void UpdateLivesUI()
     {
         if (livesText != null)
             livesText.text = "Lives: " + lives;
     }
 
-    // ☠️ پایان بازی
     public void GameOver()
     {
         // if (musicSource != null && musicSource.isPlaying)
@@ -72,13 +105,13 @@ public class GameManager : MonoBehaviour
 
         lost = true;
 
-        audioSource?.PlayOneShot(fallSound);
+        if (audioSource != null && fallSound != null)
+            audioSource.PlayOneShot(fallSound);
 
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
     }
 
-    // 🔄 ریست بازی
     public void ReloadScene()
     {
         Time.timeScale = 1;
@@ -135,4 +168,10 @@ public class GameManager : MonoBehaviour
         gameOverPanel.SetActive(false);
         StartCoroutine(BeginCountDown());
     }
+
+    public void EnableInfiniteLives()
+    {
+        hasInfiniteLives = true;
+    }
+
 }

@@ -157,6 +157,7 @@ MonoBehaviour:
   livesText: {fileID: 721794375}
   fallSound: {fileID: 8300000, guid: d44a9824d5d614546befb3e0cc125b36, type: 3}
   musicSource: {fileID: 2049897147}
+  ball: {fileID: 587008690}
 --- !u!4 &69410603
 Transform:
   m_ObjectHideFlags: 0
@@ -978,7 +979,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -488.7, y: -138.6}
+=======
+  m_AnchoredPosition: {x: -484, y: -112}
+>>>>>>> 3c3fc3598d624e3977ebf055b3b1e780fb6ae476
   m_SizeDelta: {x: 197.81, y: 49.0111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &565729670
@@ -1969,11 +1974,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9907a439cb78e7b4b94bacd802855eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   goodItemPrefab: {fileID: 0}
   badItemPrefab: {fileID: 0}
   spawnInterval: 2.5
   spawnRangeX: {x: -3, y: 3}
   spawnY: 4
+=======
+  itemPrefabs:
+  - {fileID: 6953697542442167160, guid: d35fa226d28d3284fb2c89449b6eae52, type: 3}
+  - {fileID: 8462816388029400537, guid: 889f05ecc92876c4b9e8655746db0ac3, type: 3}
+  - {fileID: 8572788035287424891, guid: 5f4d99f7c91d2824bb0467291bf12ec6, type: 3}
+  - {fileID: 7795973452680048683, guid: 6278a36b7c01ce8499d42bb1ac161515, type: 3}
+  spawnInterval: 2.5
+>>>>>>> 3c3fc3598d624e3977ebf055b3b1e780fb6ae476
 --- !u!4 &1671834923
 Transform:
   m_ObjectHideFlags: 0
