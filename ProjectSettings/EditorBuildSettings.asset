@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Basketball Stadium.unity
     guid: f1fa469a33bd8d8499d39ee156ece641
+  - enabled: 1
+    path: Assets/Scenes/Levels/Tennis PlayGround.unity
+    guid: 22efd3f89f1ce914f9845417960fe5c5
   m_configObjects: {}

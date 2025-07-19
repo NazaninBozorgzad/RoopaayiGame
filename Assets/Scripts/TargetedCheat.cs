@@ -6,10 +6,12 @@ public class TargetedCheat : MonoBehaviour
 {
     int clicks;
     bool enabledInfiniteLives;
+    private GameManager gm;
 
     void Awake()
     {
         enabledInfiniteLives = false;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     void OnMouseDown()
     {
@@ -19,9 +21,9 @@ public class TargetedCheat : MonoBehaviour
 
     void Update()
     {
-        if (clicks >= 5)
+        if (clicks >= 5 && enabledInfiniteLives == false)
         {
-            GameManager.instance.EnableInfiniteLives();
+            gm.EnableInfiniteLives();
             enabledInfiniteLives = true;
         }
     }

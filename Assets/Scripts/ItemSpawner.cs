@@ -6,8 +6,8 @@ public class ItemSpawner : MonoBehaviour
 
     public float spawnInterval = 3f; // فاصله زمانی بین اسپاون‌ها
 
-    private Vector2 spawnAreaMin;
-    private Vector2 spawnAreaMax;
+    public Vector2 spawnAreaMin;
+    public Vector2 spawnAreaMax;
 
     void Start()
     {

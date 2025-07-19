@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d149924a60794e8479172fdbda290eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 1
-  effectDuration: 5
+  itemType: 2
+  lifetime: 5
+  blinkDuration: 1
+  blinkInterval: 0.2
+  specialItemUse: {fileID: 8300000, guid: 8b13252906704424fbff59a4f3d2ae91, type: 3}
 --- !u!212 &7168488191456854392
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -90,13 +93,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: fc78652c45932904b9245a27766f03f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 24.72, y: 32.123447}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

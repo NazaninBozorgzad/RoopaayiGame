@@ -120,7 +120,6 @@ public class BallController : MonoBehaviour
     {
         forceMultiplier = originalForceMultiplier * 0.5f;
         maxForce = originalMaxForce * 0.5f;
-        Debug.Log("🐢 توپ کند شد");
     }
 
     // ⚡ بازگرداندن سرعت به حالت عادی
@@ -131,17 +130,15 @@ public class BallController : MonoBehaviour
        // Debug.Log("⚡ سرعت توپ به حالت عادی برگشت");
     //}
     public void SetFastSpeed()
-{
-    forceMultiplier = originalForceMultiplier * 1.5f;
-    maxForce = originalMaxForce * 1.5f;
-    Debug.Log("⚡ توپ سریع شد");
-}
+    {
+        forceMultiplier = originalForceMultiplier * 2f;
+        maxForce = originalMaxForce * 2f;
+    }
 
-public void ResetSpeed()
-{
-    forceMultiplier = originalForceMultiplier;
-    maxForce = originalMaxForce;
-    Debug.Log("🔄 سرعت توپ به حالت عادی برگشت");
-}
+    public void ResetSpeed()
+    {
+        forceMultiplier = originalForceMultiplier;
+        maxForce = originalMaxForce;
+    }
 
 }

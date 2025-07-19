@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Threading;
+using Unity.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,20 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverPanel;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
-    public GameObject beforeStartImage;
+    public GameObject winningPanel;
+    private LevelLoader levelLoader;
 
     [Header("Audio")]
     public AudioClip fallSound;
+    public AudioClip winningSound;
     public AudioSource musicSource;
+    public enum Level
+    {
+        SoccerStadium,
+        BasketBallStadium,
+        TennisPlayground
+    };
+    public Level level;
     private AudioSource audioSource;
 
     public bool lost;
@@ -32,13 +42,31 @@ public class GameManager : MonoBehaviour
     private bool isSlowBallActive = false;
     private float slowBallEndTime;
 
-    [Header("CountDownSheets")]
-    public GameObject[] countDownSprites = new GameObject[3];
 
     void Awake()
     {
+        switch (level)
+        {
+            case Level.SoccerStadium:
+                {
+                    score = 0;
+                    break;
+                }
+
+            case Level.BasketBallStadium:
+                {
+                    score = 20;
+                    break;
+                }
+
+            case Level.TennisPlayground:
+                {
+                    score = 40;
+                    break;
+                }
+        }
+
         lives += PlayerPrefs.GetInt("Purchased Lives");
-        Time.timeScale = 0;
         BeginPlay();
     }
 
@@ -64,6 +92,7 @@ public class GameManager : MonoBehaviour
         int finalScore = isDoubleScoreActive ? value * 2 : value;
         score += finalScore;
         UpdateScoreUI();
+        CheckSceneTransition();
     }
 
     void UpdateScoreUI()
@@ -94,14 +123,16 @@ public class GameManager : MonoBehaviour
 
     void UpdateLivesUI()
     {
-        if (livesText != null)
+        if (livesText != null && hasInfiniteLives == true)
+            return;
+        else if (livesText != null && hasInfiniteLives == false)
             livesText.text = "Lives: " + lives;
     }
 
     public void GameOver()
     {
-        // if (musicSource != null && musicSource.isPlaying)
-        //     musicSource.Stop();
+        if (musicSource != null && musicSource.isPlaying)
+            musicSource.Stop();
 
         lost = true;
 
@@ -125,38 +156,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Main Menu");
     }
 
-    // 🛒 فراخوانی خرید جان (از دکمه)
-    public void BuyLifeButton()
-    {
-        IAPManager.instance?.BuyExtraLife();
-    }
-
-    System.Collections.IEnumerator BeginCountDown()
-    {
-        // I will restructure these if I get extra time
-        beforeStartImage.SetActive(true);
-        yield return new WaitForSecondsRealtime(2);
-        countDownSprites[0].SetActive(true);
-
-        yield return new WaitForSecondsRealtime(1);
-
-        countDownSprites[0].SetActive(false);
-        countDownSprites[1].SetActive(true);
-
-        yield return new WaitForSecondsRealtime(1);
-
-        countDownSprites[1].SetActive(false);
-        countDownSprites[2].SetActive(true);
-
-        yield return new WaitForSecondsRealtime(1);
-
-        countDownSprites[2].SetActive(false);
-        beforeStartImage.SetActive(false);
-        Time.timeScale = 1;
-
-        yield return null;
-
-    }
 
     void BeginPlay()
     {
@@ -164,14 +163,43 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         UpdateScoreUI();
         musicSource = GameObject.Find("MusicPlayer").GetComponent<AudioSource>();
+        levelLoader = GameObject.Find("Level Loader").GetComponent<LevelLoader>();
         UpdateLivesUI();
         gameOverPanel.SetActive(false);
-        StartCoroutine(BeginCountDown());
+        winningPanel.SetActive(false);
     }
 
     public void EnableInfiniteLives()
     {
         hasInfiniteLives = true;
+        livesText.text = "Infinite Lives!";
+    }
+
+    void CheckSceneTransition()
+    {
+        if (level == Level.SoccerStadium)
+        {
+            if (score >= 20)
+            {
+                StartCoroutine(levelLoader.LoadLevel("BasketBall Stadium"));
+            }
+        }
+        else if (level == Level.BasketBallStadium)
+        {
+            if (score >= 40)
+            {
+                StartCoroutine(levelLoader.LoadLevel("Tennis Playground"));
+            }
+        }
+        else if (level == Level.TennisPlayground)
+        {
+            if (score >= 80)
+            {
+                Time.timeScale = 0;
+                audioSource.PlayOneShot(winningSound);
+                winningPanel.SetActive(true);
+            }
+        }
     }
 
 }

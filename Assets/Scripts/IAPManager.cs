@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
@@ -5,6 +6,7 @@ using UnityEngine.Purchasing.Extension;
 public class IAPManager : MonoBehaviour, IStoreListener
 {
     public static IAPManager instance;
+    public TextMeshPro feedback;
 
     private static IStoreController storeController;
     private static IExtensionProvider storeExtensionProvider;
@@ -47,12 +49,14 @@ public class IAPManager : MonoBehaviour, IStoreListener
             }
             else
             {
-                Debug.Log("❌ Product not available for purchase.");
+                feedback.text = "Product is not available for purchasing";
+                feedback.color = Color.red;
             }
         }
         else
         {
-            Debug.Log("❌ IAP not initialized.");
+            feedback.text = "IAP hasn't initialized";
+            feedback.color = Color.red;
         }
     }
 
@@ -60,7 +64,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
     {
         if (args.purchasedProduct.definition.id == extraLifeProductId)
         {
-            Debug.Log("✅ Extra Life Purchased!");
+            feedback.text = "ExtraLives purchased!";
+            feedback.color = Color.green;
             purchasedLives += 1;
             PlayerPrefs.SetInt("Purchased Lives", purchasedLives); // جان اضافه کن
         }
@@ -70,23 +75,23 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
-        Debug.Log($"❌ Purchase Failed: {product.definition.id} - {failureReason}");
+        feedback.text = $"Purchase failed: {product.definition.id} because {failureReason}";
+        feedback.color = Color.red;
     }
 
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
-        Debug.Log("✅ IAP Initialized");
         storeController = controller;
         storeExtensionProvider = extensions;
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)
     {
-        Debug.LogError($"❌ IAP Init Failed (old): {error}");
+        feedback.text = $"IAP initilization failed: {error}, please try again later.";
     }
 
     public void OnInitializeFailed(InitializationFailureReason error, string message)
     {
-        Debug.LogError($"❌ IAP Init Failed (new): {error} - {message}");
+        feedback.text = $"IAP initilization failed: {error} - {message}, please try again later.";
     }
 }

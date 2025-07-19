@@ -48,8 +48,14 @@ MonoBehaviour:
   gameOverPanel: {fileID: 0}
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
+  winningPanel: {fileID: 0}
   fallSound: {fileID: 8300000, guid: d44a9824d5d614546befb3e0cc125b36, type: 3}
+  winningSound: {fileID: 8300000, guid: 33f6ee2dfe623b84c89b19102503d744, type: 3}
   musicSource: {fileID: 0}
+  level: 0
+  lost: 0
+  hasInfiniteLives: 0
+  ball: {fileID: 0}
 --- !u!82 &3045170776089151667
 AudioSource:
   m_ObjectHideFlags: 0

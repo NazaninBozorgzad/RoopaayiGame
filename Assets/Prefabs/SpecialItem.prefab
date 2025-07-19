@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d149924a60794e8479172fdbda290eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 1
-  effectDuration: 5
+  itemType: 2
+  lifetime: 5
+  blinkDuration: 1
+  blinkInterval: 0.2
+  specialItemUse: {fileID: 8300000, guid: 8b13252906704424fbff59a4f3d2ae91, type: 3}
 --- !u!212 &5036006958507239488
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -44,8 +44,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9907a439cb78e7b4b94bacd802855eb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodItemPrefab: {fileID: 6953697542442167160, guid: d35fa226d28d3284fb2c89449b6eae52, type: 3}
-  badItemPrefab: {fileID: 8462816388029400537, guid: 889f05ecc92876c4b9e8655746db0ac3, type: 3}
+  itemPrefabs:
+  - {fileID: 8263492836653235217, guid: 89b62836ff15fd149bafb4de6ed2aebb, type: 3}
+  - {fileID: 8263492836653235217, guid: 89b62836ff15fd149bafb4de6ed2aebb, type: 3}
+  - {fileID: 8263492836653235217, guid: 89b62836ff15fd149bafb4de6ed2aebb, type: 3}
+  - {fileID: 8263492836653235217, guid: 89b62836ff15fd149bafb4de6ed2aebb, type: 3}
+  - {fileID: 8263492836653235217, guid: 89b62836ff15fd149bafb4de6ed2aebb, type: 3}
+  - {fileID: 3581763309101303887, guid: 7a1fc6a009d1cf04e81d504c03fc9504, type: 3}
+  - {fileID: 3581763309101303887, guid: 7a1fc6a009d1cf04e81d504c03fc9504, type: 3}
+  - {fileID: 3581763309101303887, guid: 7a1fc6a009d1cf04e81d504c03fc9504, type: 3}
+  - {fileID: 3581763309101303887, guid: 7a1fc6a009d1cf04e81d504c03fc9504, type: 3}
+  - {fileID: 3581763309101303887, guid: 7a1fc6a009d1cf04e81d504c03fc9504, type: 3}
+  - {fileID: 3863827457053782737, guid: b3742ba75ac3d924cbeb591dda456855, type: 3}
+  - {fileID: 8572788035287424891, guid: 5f4d99f7c91d2824bb0467291bf12ec6, type: 3}
+  - {fileID: 7795973452680048683, guid: 6278a36b7c01ce8499d42bb1ac161515, type: 3}
   spawnInterval: 2.5
-  spawnRangeX: {x: -3, y: 3}
-  spawnY: 4
+  spawnAreaMin: {x: 0, y: 0}
+  spawnAreaMax: {x: 0, y: 0}
