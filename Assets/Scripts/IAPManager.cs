@@ -7,6 +7,16 @@ public class IAPManager : MonoBehaviour
 {
     private Payment payment;
     [SerializeField] private string appKey;
+    public string[] products = new string[3];
+    public string[] consumeTokens = new string[3];
+    public bool isInitilaized;
+
+    private async void Start()
+    {
+        var wasSuccessful = await Init();
+        if (!wasSuccessful) return;
+        isInitilaized = true;
+    }
 
     public async Task<bool> Init()
     {
