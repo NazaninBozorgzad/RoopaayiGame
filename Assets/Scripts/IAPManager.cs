@@ -1,96 +1,37 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.Purchasing;
-using UnityEngine.Purchasing.Extension;
-
-public class IAPManager : MonoBehaviour, IStoreListener
+using Bazaar.Poolakey;
+using Bazaar.Data;
+using System.Threading.Tasks;
+using Bazaar.Poolakey.Data;
+public class IAPManager : MonoBehaviour
 {
-    public static IAPManager instance;
-    public TextMeshProUGUI feedback;
-    private static IStoreController storeController;
-    private static IExtensionProvider storeExtensionProvider;
+    private Payment payment;
+    [SerializeField] private string appKey;
 
-    public string extraLifeProductId = "extra_life";
-    private int purchasedLives;
-
-    void Start()
+    public async Task<bool> Init()
     {
-        instance = this;
-        InitializePurchasing();
-        purchasedLives = PlayerPrefs.GetInt("Purchased Lives");
+        SecurityCheck securityCheck = SecurityCheck.Enable(appKey);
+        PaymentConfiguration paymentConfiguration = new PaymentConfiguration(securityCheck);
+        payment = new Payment(paymentConfiguration);
+        var result = await payment.Connect();
+        return result.status == Status.Success;
     }
 
-    public void InitializePurchasing()
+    public async Task<Result<PurchaseInfo>> Purchace(string productID)
     {
-        if (IsInitialized()) return;
-
-        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
-
-        builder.AddProduct(extraLifeProductId, ProductType.Consumable);
-
-        UnityPurchasing.Initialize(this, builder);
+        var result = await payment.Purchase(productID);
+        return result;
     }
 
-    private bool IsInitialized()
+    public async Task<Result<bool>> Consume(string purchaseToken)
     {
-        return storeController != null && storeExtensionProvider != null;
+        var result = await payment.Consume(purchaseToken);
+        return result;
     }
 
-    public void BuyExtraLife()
+    private void OnApplicationQuit()
     {
-        if (IsInitialized())
-        {
-            Product product = storeController.products.WithID(extraLifeProductId);
-
-            if (product != null && product.availableToPurchase)
-            {
-                storeController.InitiatePurchase(product);
-            }
-            else
-            {
-                feedback.text = "Product is not available for purchasing";
-                feedback.color = Color.red;
-            }
-        }
-        else
-        {
-            feedback.text = "IAP hasn't initialized";
-            feedback.color = Color.red;
-        }
+        payment.Disconnect();
     }
 
-    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
-    {
-        if (args.purchasedProduct.definition.id == extraLifeProductId)
-        {
-            feedback.text = "ExtraLives purchased!";
-            feedback.color = Color.green;
-            purchasedLives += 1;
-            PlayerPrefs.SetInt("Purchased Lives", purchasedLives); // جان اضافه کن
-        }
-
-        return PurchaseProcessingResult.Complete;
-    }
-
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
-    {
-        feedback.text = $"Purchase failed: {product.definition.id} because {failureReason}";
-        feedback.color = Color.red;
-    }
-
-    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
-    {
-        storeController = controller;
-        storeExtensionProvider = extensions;
-    }
-
-    public void OnInitializeFailed(InitializationFailureReason error)
-    {
-        feedback.text = $"IAP initilization failed: {error}, please try again later.";
-    }
-
-    public void OnInitializeFailed(InitializationFailureReason error, string message)
-    {
-        feedback.text = $"IAP initilization failed: {error} - {message}, please try again later.";
-    }
 }
