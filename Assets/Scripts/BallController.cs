@@ -63,7 +63,7 @@ public class BallController : MonoBehaviour
         if (dragVector.magnitude >= minDragDistance)
         {
             Vector2 force = dragVector.normalized * Mathf.Clamp(dragVector.magnitude * forceMultiplier, 0f, maxForce);
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             rb.AddForce(force, ForceMode2D.Impulse);
 
             audioSource?.Play();
@@ -86,7 +86,7 @@ public class BallController : MonoBehaviour
     System.Collections.IEnumerator ResetAfterDelay(float delay)
     {
         canDrag = false;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
         rb.simulated = false;
 

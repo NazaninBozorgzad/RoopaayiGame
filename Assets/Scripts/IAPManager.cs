@@ -6,8 +6,7 @@ using UnityEngine.Purchasing.Extension;
 public class IAPManager : MonoBehaviour, IStoreListener
 {
     public static IAPManager instance;
-    public TextMeshPro feedback;
-
+    public TextMeshProUGUI feedback;
     private static IStoreController storeController;
     private static IExtensionProvider storeExtensionProvider;
 

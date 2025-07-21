@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
         TennisPlayground
     };
     public Level level;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     public bool lost;
     public bool hasInfiniteLives;

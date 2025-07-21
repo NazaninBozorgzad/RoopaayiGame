@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -41,8 +40,9 @@ public class Item : MonoBehaviour
             }
             else if (itemType.Equals(ItemType.Bad))
             {
-                audioSource.PlayOneShot(bombExplosion, 1);
+                GameManager.instance.audioSource.PlayOneShot(bombExplosion, 1);
                 GameManager.instance.GameOver();
+                Destroy(gameObject);
             }
             else if (itemType.Equals(ItemType.Special))
             {
