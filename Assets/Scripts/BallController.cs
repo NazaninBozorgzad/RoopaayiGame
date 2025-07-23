@@ -14,6 +14,9 @@ public class BallController : MonoBehaviour
     private bool isDragging = false;
 
     public TrajectoryLine trajectory;
+    public Sprite amFootballBall;
+    public Sprite pingpongBall;
+    public Sprite defaultBall;
     private Vector3 initialPosition;
     private bool canDrag = true;
 
@@ -24,6 +27,24 @@ public class BallController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
+        if (PlayerPrefs.GetString("Ball Type") == "American Football")
+        {
+            sr.sprite = amFootballBall;
+        }
+        else if (PlayerPrefs.GetString("Ball Type") == "Ping Pong")
+        {
+            sr.sprite = pingpongBall;
+        }
+        else if (PlayerPrefs.GetString("Ball type") == "Default")
+        {
+            sr.sprite = defaultBall;
+        }
+        else
+        {
+            sr.sprite = defaultBall;
+        }
+
         audioSource = GetComponent<AudioSource>();
 
         originalForceMultiplier = forceMultiplier;
