@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI livesText;
     public GameObject winningPanel;
     private LevelLoader levelLoader;
+    public VideoAdPlayer adPlayer;
 
     [Header("Audio")]
     public AudioClip fallSound;
     public AudioClip winningSound;
+    public AudioClip rewardedSFX;
     public AudioSource musicSource;
     public enum Level
     {
@@ -200,6 +202,22 @@ public class GameManager : MonoBehaviour
                 winningPanel.SetActive(true);
             }
         }
+    }
+
+    public void Relive()
+    {
+        lost = false;
+        lives += 1;
+        UpdateLivesUI();
+        gameOverPanel.SetActive(false);
+        Time.timeScale = 1;
+        audioSource.PlayOneShot(rewardedSFX, 1);
+        musicSource.Play();
+    }
+
+    public void ShowVideoAd()
+    {
+        adPlayer.Show();
     }
 
 }

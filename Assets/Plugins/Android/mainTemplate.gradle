@@ -6,6 +6,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
     implementation 'com.github.cafebazaar.Poolakey:poolakey:2.0.0' // Assets/Bazaar/Poolakey/Scripts/Editor/CafeBazaarPlugin_Dependencies.xml:7
+    implementation 'com.google.android.gms:play-services-ads:22.6.0' // Assets/GoogleMobileAds/Editor/GoogleMobileAdsDependencies.xml:7
+    implementation 'com.google.android.ump:user-messaging-platform:2.1.0' // Assets/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
+    implementation 'com.google.code.gson:gson:2.8.5' // Assets/GoogleMobileAdsNative/Editor/GoogleMobileAdsNativeDependencies.xml:7
+    implementation 'ir.tapsell.plus:tapsell-plus-sdk-unity:2.3.2' // Assets/TapsellPlusSDK/Editor/TapsellPlusDependencies.xml:8
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10' // Assets/Bazaar/Poolakey/Scripts/Editor/CafeBazaarPlugin_Dependencies.xml:8
 // Android Resolver Dependencies End
 **DEPS**}

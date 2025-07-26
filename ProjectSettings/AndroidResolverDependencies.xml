@@ -1,6 +1,10 @@
 <dependencies>
   <packages>
     <package>com.github.cafebazaar.Poolakey:poolakey:2.0.0</package>
+    <package>com.google.android.gms:play-services-ads:22.6.0</package>
+    <package>com.google.android.ump:user-messaging-platform:2.1.0</package>
+    <package>com.google.code.gson:gson:2.8.5</package>
+    <package>ir.tapsell.plus:tapsell-plus-sdk-unity:2.3.2</package>
     <package>org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.10</package>
   </packages>
   <files />
@@ -18,7 +22,7 @@
     <setting name="patchMainTemplateGradle" value="True" />
     <setting name="projectExportEnabled" value="False" />
     <setting name="useFullCustomMavenRepoPathWhenExport" value="True" />
-    <setting name="useFullCustomMavenRepoPathWhenNotExport" value="False" />
+    <setting name="useFullCustomMavenRepoPathWhenNotExport" value="True" />
     <setting name="useJetifier" value="True" />
   </settings>
 </dependencies>

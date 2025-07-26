@@ -67,37 +67,58 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\IAPManager.cs" />
     <Compile Include="Assets\Scripts\ButtonFunctions.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\TapsellPlusNativeBannerAd.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Data\PurchaseInfo.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Data\SKUDetails.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Callbacks\TrialSubscriptionCallbackProxy.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\TapsellPlusAndroidPlugin.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\PaymentConfiguration.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\AdMobNativeAd.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Callbacks\PaymentCallbackProxy.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />
     <Compile Include="Assets\Scripts\TargetedCheat.cs" />
     <Compile Include="Assets\Scripts\ItemSpawner.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Callbacks\SKUDetailsCallbackProxy.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Payment.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\TapsellPlus.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Callbacks\ConsumeCallbackProxy.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Callbacks\ConnectionCallbackProxy.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\Callbacks\PurchasesCallbackProxy.cs" />
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Bazaar\Poolakey\Scripts\SecurityCheck.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\TapsellPlusRequestError.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\TapsellPlusErrorModel.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\TapsellPlusPlugin.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\Gravity.cs" />
     <Compile Include="Assets\Bazaar\Scripts\Data\Result.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\TapsellPlusMessageHandler.cs" />
+    <Compile Include="Assets\Scripts\VideoAdPlayer.cs" />
     <Compile Include="Assets\Bazaar\Scripts\Bridge.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\ClickHandler.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\BannerType.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\TapsellPlusNativeAd.cs" />
     <Compile Include="Assets\Bazaar\Scripts\Callbacks\CallbackProxy.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\AdmobNativeAdModel.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\TapsellPlusAdNetworkError.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\TapsellPlusAdModel.cs" />
     <Compile Include="Assets\Scripts\TrajectoryDrawer.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\TapsellNativeAd.cs" />
+    <Compile Include="Assets\TapsellPlusSDK\models\AdNetworkShowErrorModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF-Mobile Masking Fixed.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\RTLTMPro\Ranges\ASCIIDigits.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds_version-8.7.0_manifest.txt" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\RTLTMPro\Ranges\ArabicLetters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Common.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.dll" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF-Mobile Fixed.shader" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF Overlay Fixed.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
@@ -106,29 +127,39 @@
     <None Include="Assets\RTLTMPro\Ranges\ArabicTashkil.txt" />
     <None Include="Assets\RTLTMPro\Ranges\HebrewLetters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Core.dll" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\GoogleMobileAdsNative\link.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\GoogleMobileAds\link.xml" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMPro_SurfaceOutline.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Android.dll" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\RTLTMPro\Ranges\ArabicAll.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF Fixed.shader" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Common.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.dll" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF-Surface Fixed.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\RTLTMPro\Ranges\ArabicDigits.txt" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF-Surface-Mobile Fixed.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Android.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\RTLTMPro\Resources\Shaders\TMP_SDF-Mobile Overlay Fixed.shader" />
+    <None Include="Assets\GoogleMobileAds\GoogleMobileAds.Ump.Android.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -584,6 +615,10 @@
       <HintPath>G:\Unity\installs\unityhub\6000.0.24f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds.Common">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
@@ -592,12 +627,52 @@
       <HintPath>Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="GoogleMobileAds">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Core">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAdsNative.Android">
+      <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Android.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Google.MiniJson">
+      <HintPath>Assets\Plugins\Google.MiniJson.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAdsNative.Common">
+      <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.Common.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAdsNative">
+      <HintPath>Assets\GoogleMobileAdsNative\GoogleMobileAdsNative.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Unity">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Unity.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil\Mono.Cecil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Android">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Android.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="GoogleMobileAds.Ump.Android">
+      <HintPath>Assets\GoogleMobileAds\GoogleMobileAds.Ump.Android.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">
@@ -1117,6 +1192,7 @@
     <ProjectReference Include="Unity.Timeline.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
     <ProjectReference Include="UnityEngine.UI.csproj" />
+    <ProjectReference Include="GoogleMobileAds.Editor.csproj" />
     <ProjectReference Include="Unity.ShaderGraph.Editor.csproj" />
     <ProjectReference Include="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
     <ProjectReference Include="UnityEditor.Purchasing.csproj" />

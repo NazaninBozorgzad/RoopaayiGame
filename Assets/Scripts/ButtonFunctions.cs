@@ -8,6 +8,9 @@ public class ButtonFunctions : MonoBehaviour
     public IAPManager iAPManager;
     public Button amFootballballApplyButton;
     public Button PingPongApplyButton;
+    public Button amFootballBallBuyButton;
+    public Button pingPongBallBuyButton;
+    public Button extraLivesBuyButton;
 
     #region NormalFunctioning
 
@@ -34,6 +37,7 @@ public class ButtonFunctions : MonoBehaviour
     #endregion
 
     #region In-App-PurchasingFunctions
+
     Bazaar.Data.Result<bool> extraLivesConsumeResult;
     public async void OnBuyingExtraLivesClicked()
     {
@@ -42,7 +46,8 @@ public class ButtonFunctions : MonoBehaviour
         iAPManager.consumeTokens[0] = purchaseResult.data.purchaseToken;
         //Then, consume it!
         extraLivesConsumeResult = await iAPManager.Consume(iAPManager.consumeTokens[0]);
-
+        //We won't let them buy twice, unless we're scamming them
+        extraLivesBuyButton.interactable = false;
     }
     Bazaar.Data.Result<bool> amFootballConsumeResult;
     public async void OnBuyingAmericanFootballBallClicked()
@@ -53,6 +58,8 @@ public class ButtonFunctions : MonoBehaviour
         //Then, consume it!
         amFootballConsumeResult = await iAPManager.Consume(iAPManager.consumeTokens[0]);
         if (amFootballConsumeResult.data) amFootballballApplyButton.interactable = true;
+        //We won't let them buy twice, unless we're scamming them
+        amFootballBallBuyButton.interactable = false;
     }
 
     Bazaar.Data.Result<bool> pingpongBallConsumeResult;
@@ -64,6 +71,8 @@ public class ButtonFunctions : MonoBehaviour
         //Then, consume it!
         pingpongBallConsumeResult = await iAPManager.Consume(iAPManager.consumeTokens[0]);
         if (pingpongBallConsumeResult.data) PingPongApplyButton.interactable = true;
+        //We won't let them buy twice, unless we're scamming them
+        pingPongBallBuyButton.interactable = false;
     }
 
     public void OnApplyingAmFootballBallClicked()
