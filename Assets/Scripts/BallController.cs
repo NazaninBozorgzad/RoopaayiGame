@@ -14,39 +14,37 @@ public class BallController : MonoBehaviour
     private bool isDragging = false;
 
     public TrajectoryLine trajectory;
-    public Sprite amFootballBall;
-    public Sprite pingpongBall;
-    public Sprite defaultBall;
     private Vector3 initialPosition;
     private bool canDrag = true;
-
+    public GameObject amfootballBall;
+    public GameObject pingPongBall;
     private float originalForceMultiplier;
     private float originalMaxForce;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-
         if (PlayerPrefs.GetString("Ball Type") == "American Football")
         {
-            sr.sprite = amFootballBall;
+            Instantiate(amfootballBall, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
         else if (PlayerPrefs.GetString("Ball Type") == "Ping Pong")
         {
-            sr.sprite = pingpongBall;
+            Instantiate(pingPongBall, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
-        else if (PlayerPrefs.GetString("Ball type") == "Default")
+        else if (PlayerPrefs.GetString("Ball Type") == "Default")
         {
-            sr.sprite = defaultBall;
+            // Do nothing
         }
         else
         {
-            sr.sprite = defaultBall;
+            // Do nothing
         }
 
+        rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-
         originalForceMultiplier = forceMultiplier;
         originalMaxForce = maxForce;
     }
@@ -85,7 +83,9 @@ public class BallController : MonoBehaviour
         {
             Vector2 force = dragVector.normalized * Mathf.Clamp(dragVector.magnitude * forceMultiplier, 0f, maxForce);
             rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0;
             rb.AddForce(force, ForceMode2D.Impulse);
+            rb.AddTorque(Mathf.Clamp(force.x * force.y, -2, 2), ForceMode2D.Impulse);
 
             audioSource?.Play();
             GameManager.instance?.AddScore(1);
@@ -139,8 +139,8 @@ public class BallController : MonoBehaviour
     // 🐢 کاهش موقت سرعت پرتاب
     public void SetSlowSpeed()
     {
-        forceMultiplier = originalForceMultiplier * 0.5f;
-        maxForce = originalMaxForce * 0.5f;
+        forceMultiplier = originalForceMultiplier * 0.3f;
+        maxForce = originalMaxForce * 0.3f;
     }
 
     // ⚡ بازگرداندن سرعت به حالت عادی

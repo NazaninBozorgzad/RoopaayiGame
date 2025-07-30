@@ -7,10 +7,9 @@ public class ButtonFunctions : MonoBehaviour
 {
     public IAPManager iAPManager;
     public Button amFootballballApplyButton;
-    public Button PingPongApplyButton;
+    public Button pingPongBallApplyButton;
     public Button amFootballBallBuyButton;
     public Button pingPongBallBuyButton;
-    public Button extraLivesBuyButton;
 
     #region NormalFunctioning
 
@@ -46,8 +45,12 @@ public class ButtonFunctions : MonoBehaviour
         iAPManager.consumeTokens[0] = purchaseResult.data.purchaseToken;
         //Then, consume it!
         extraLivesConsumeResult = await iAPManager.Consume(iAPManager.consumeTokens[0]);
-        //We won't let them buy twice, unless we're scamming them
-        extraLivesBuyButton.interactable = false;
+        if (extraLivesConsumeResult.data)
+        {
+            //We'll apply the new purchased life immideatly after the purchase
+            int purchasedLives = PlayerPrefs.GetInt("Purchased Lives");
+            PlayerPrefs.SetInt("Purchased Lives", purchasedLives + 1);
+        }
     }
     Bazaar.Data.Result<bool> amFootballConsumeResult;
     public async void OnBuyingAmericanFootballBallClicked()
@@ -60,6 +63,9 @@ public class ButtonFunctions : MonoBehaviour
         if (amFootballConsumeResult.data) amFootballballApplyButton.interactable = true;
         //We won't let them buy twice, unless we're scamming them
         amFootballBallBuyButton.interactable = false;
+        PlayerPrefs.SetInt("AmFootballBallPurchased", 1);
+
+        
     }
 
     Bazaar.Data.Result<bool> pingpongBallConsumeResult;
@@ -70,9 +76,10 @@ public class ButtonFunctions : MonoBehaviour
         iAPManager.consumeTokens[2] = purchaseResult.data.purchaseToken;
         //Then, consume it!
         pingpongBallConsumeResult = await iAPManager.Consume(iAPManager.consumeTokens[0]);
-        if (pingpongBallConsumeResult.data) PingPongApplyButton.interactable = true;
+        if (pingpongBallConsumeResult.data) pingPongBallApplyButton.interactable = true;
         //We won't let them buy twice, unless we're scamming them
         pingPongBallBuyButton.interactable = false;
+        PlayerPrefs.SetInt("PingPongBallPurchased", 1);
     }
 
     public void OnApplyingAmFootballBallClicked()
@@ -90,5 +97,29 @@ public class ButtonFunctions : MonoBehaviour
         PlayerPrefs.SetString("Ball Type", "Default");
     }
 
+    #endregion
+
+    #region UnityMessages
+    private void Start()
+    {
+        //Pre setup for buying ans applying buttons to prevent common issues afterwards.
+        if (PlayerPrefs.GetInt("AmFootballBallPurchased") == 1)
+        {
+            amFootballBallBuyButton.interactable = false;
+        }
+        else if (PlayerPrefs.GetInt("AmFootballBallPurchased") == 0)
+        {
+            amFootballballApplyButton.interactable = false;
+        }
+
+        if (PlayerPrefs.GetInt("PingPongBallPurchased") == 1)
+        {
+            pingPongBallBuyButton.interactable = false;
+        }
+        else if (PlayerPrefs.GetInt("PingPongBallPurchased") == 0)
+        {
+            pingPongBallApplyButton.interactable = false;
+        }
+    }
     #endregion
 }

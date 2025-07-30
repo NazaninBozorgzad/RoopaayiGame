@@ -586,7 +586,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 294890858}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962552561}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: OnBuyingPingPongBallClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &294890858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,9 +1252,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+    m_PressedColor: {r: 0.9719645, g: 1, b: 0.7877358, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1262,7 +1274,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 583229449}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962552561}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: OnApplyingPingPongBallClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &583229449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1361,9 +1385,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
+    m_PressedColor: {r: 0.9719645, g: 1, b: 0.7877358, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1383,7 +1407,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 714319267}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962552561}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: OnApplyingAmFootballBallClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &714319267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2356,7 +2392,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1252048070}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962552561}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: OnBuyingExtraLivesClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1252048070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2424,7 +2472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603be4310724cec46bc77371227921a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appKey: 
+  appKey: MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwCo/Jd4SOTpQ40gCQOl2aankdPci/qy/sCJGuMwqN2pMY3MTv7DPYg38ksov0LHHxRBCYKnKFSgp6vQwtGubksO1jb91e2CKNhdq/2NgbCuJX31Flj9wK03Jmjbmy94U1QmCm7TIthqGkUV0dDRnH3BhzjcjD8aKr4bJzAKATPcqAZ68C7VpteEZeW2rNaeGOvbSeR8faMB0DSHhzZZ6wJ0Gu2Y4jPjWr7Li4giRwECAwEAAQ==
   products:
   - extra_lives
   - am_ball
@@ -3727,8 +3775,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iAPManager: {fileID: 1267387343}
-  amFootballballApplyButton: {fileID: 0}
-  PingPongApplyButton: {fileID: 0}
+  amFootballballApplyButton: {fileID: 714319266}
+  pingPongBallApplyButton: {fileID: 0}
+  amFootballBallBuyButton: {fileID: 1976735156}
+  pingPongBallBuyButton: {fileID: 294890857}
 --- !u!4 &1962552562
 Transform:
   m_ObjectHideFlags: 0
@@ -3962,7 +4012,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1976735157}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1962552561}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: OnBuyingAmericanFootballBallClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1976735157
 MonoBehaviour:
   m_ObjectHideFlags: 0
