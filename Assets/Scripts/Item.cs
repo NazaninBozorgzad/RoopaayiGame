@@ -1,4 +1,4 @@
-using System.Collections;
+  using System.Collections;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -19,6 +19,8 @@ public class Item : MonoBehaviour
     public AudioClip specialItemUse;
     public AudioClip bombExplosion;
     private SpriteRenderer sr;
+    public bool canInteract = true;
+
     private AudioSource audioSource;
 
     void Start()
@@ -31,7 +33,7 @@ public class Item : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Ball"))
+        if (other.CompareTag("Ball") && canInteract)
         {
             if (itemType.Equals(ItemType.Good))
             {
@@ -84,25 +86,32 @@ public class Item : MonoBehaviour
     IEnumerator RandomizeSpecialActivity()
     {
         BallController ball = GameObject.Find("Ball").GetComponent<BallController>();
-        int function = Random.Range(0, 1);
+        int function = Random.Range(0, 3);
         if (function.Equals(0))
         {
+            canInteract = false;
             routineHasEnded = false;
             ball.SetFastSpeed();
-            print("Fast ball started!");
             yield return new WaitForSeconds(3);
             ball.ResetSpeed();
-            print("Fast ball ended");
             routineHasEnded = true;
         }
         else if (function.Equals(1))
         {
+            canInteract = false;
             routineHasEnded = false;
             ball.SetSlowSpeed();
-            print("Slow ball started!");
             yield return new WaitForSeconds(3);
             ball.ResetSpeed();
-            print("Slow ball ended");
+            routineHasEnded = true;
+        }
+        else if (function.Equals(2))
+        {
+            canInteract = false;
+            routineHasEnded = false;
+            GameManager.instance.isDoubleScoreActive = true;
+            yield return new WaitForSeconds(4);
+            GameManager.instance.isDoubleScoreActive = false;
             routineHasEnded = true;
         }
     }

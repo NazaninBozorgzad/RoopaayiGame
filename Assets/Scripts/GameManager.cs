@@ -38,11 +38,11 @@ public class GameManager : MonoBehaviour
     [Header("Ball Reference")]
     public BallController ball;
 
-    private bool isDoubleScoreActive = false;
-    private float doubleScoreEndTime;
+    public bool isDoubleScoreActive = false;
+    // private float doubleScoreEndTime;
 
-    private bool isSlowBallActive = false;
-    private float slowBallEndTime;
+    // public bool isSlowBallActive = false;
+    // private float slowBallEndTime;
 
 
     void Awake()
@@ -74,19 +74,19 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isDoubleScoreActive && Time.time >= doubleScoreEndTime)
-        {
-            isDoubleScoreActive = false;
-            Debug.Log("🎯 Double Score ended.");
-        }
+        // if (isDoubleScoreActive && Time.time >= doubleScoreEndTime)
+        // {
+        //     isDoubleScoreActive = false;
+        //     Debug.Log("🎯 Double Score ended.");
+        // }
 
-        if (isSlowBallActive && Time.time >= slowBallEndTime)
-        {
-            isSlowBallActive = false;
-            if (ball != null)
-                ball.ResetSpeed();
-            Debug.Log("🐢 Slow Ball ended.");
-        }
+        // if (isSlowBallActive && Time.time >= slowBallEndTime)
+        // {
+        //     isSlowBallActive = false;
+        //     if (ball != null)
+        //         ball.ResetSpeed();
+        //     Debug.Log("🐢 Slow Ball ended.");
+        // }
     }
 
     public void AddScore(int value)

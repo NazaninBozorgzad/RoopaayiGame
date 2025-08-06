@@ -351,7 +351,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iAPManager: {fileID: 0}
   amFootballballApplyButton: {fileID: 0}
-  PingPongApplyButton: {fileID: 0}
+  pingPongBallApplyButton: {fileID: 0}
+  amFootballBallBuyButton: {fileID: 0}
+  pingPongBallBuyButton: {fileID: 0}
 --- !u!4 &622502734
 Transform:
   m_ObjectHideFlags: 0
@@ -713,7 +715,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

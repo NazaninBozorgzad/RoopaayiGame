@@ -6,7 +6,10 @@
         <activity android:name="com.unity3d.player.UnityPlayerActivity"
                   android:theme="@style/UnityThemeSelector"
                   android:launchMode="singleTask"
-                  android:clearTaskOnLaunch="true">
+                  android:clearTaskOnLaunch="true"
+                  android:exported="true"
+                  >
+                  
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -14,4 +17,13 @@
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="ir.cafebazaar.permission.PAY"/>
+
+
+
+
 </manifest>

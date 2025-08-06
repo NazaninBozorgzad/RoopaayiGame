@@ -49,10 +49,13 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   livesText: {fileID: 0}
   winningPanel: {fileID: 0}
+  adPlayer: {fileID: 0}
   fallSound: {fileID: 8300000, guid: d44a9824d5d614546befb3e0cc125b36, type: 3}
   winningSound: {fileID: 8300000, guid: 33f6ee2dfe623b84c89b19102503d744, type: 3}
+  rewardedSFX: {fileID: 8300000, guid: 6bdbfa9a3d949ba458639241b7831850, type: 3}
   musicSource: {fileID: 0}
   level: 0
+  audioSource: {fileID: 0}
   lost: 0
   hasInfiniteLives: 0
   ball: {fileID: 0}
@@ -67,6 +70,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
